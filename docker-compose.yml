@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  stress:
+    image: edisonarango/stress-machine:latest
+    container_name: stress-machine
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /tmp/stress-machine-temp:/run
+    command: bash -c "/usr/sbin/init"
