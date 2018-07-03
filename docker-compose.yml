@@ -2,7 +2,8 @@ version: '3'
 
 services:
   stress:
-    image: edisonarango/stress-machine:latest
+    build: .
+    image: stress-machine
     container_name: stress-machine
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro

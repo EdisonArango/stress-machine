@@ -18,6 +18,17 @@ WORKDIR /jmeter
 RUN yum -y install java-1.8.0-openjdk
 RUN wget http://apache.uniminuto.edu//jmeter/binaries/apache-jmeter-4.0.tgz
 RUN tar -xf apache-jmeter-4.0.tgz
+RUN rm apache-jmeter-4.0.tgz
 ENV PATH=/jmeter/apache-jmeter-4.0/bin:$PATH
 
+# Wrk
+WORKDIR /
+RUN yum install -y openssl-devel git
+RUN git clone https://github.com/wg/wrk.git wrk
+WORKDIR /wrk
+RUN yum install -y make gcc
+RUN make
+RUN cp wrk /usr/bin
+
+WORKDIR /
 CMD ["/usr/sbin/init"]
